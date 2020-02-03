@@ -37,11 +37,12 @@ int main()
                 long long  sum=dp[i+m-1][j+m-1];
     	               if(i>0) {
                      sum-=dp[i-1][j+m-1];
+                    }
                      if(j>0){ 
                          sum-=dp[i+m-1][j-1];
+                          if(i>0)
                           sum+=dp[i-1][j-1];
                     }
-                 }
     			if(sum<=k) flag=1;
             }
         }
@@ -55,11 +56,12 @@ int main()
                 long long  sum=dp[i+m-1][j+m-1];
     			if(i>0) {
                      sum-=dp[i-1][j+m-1];
+                    }
                      if(j>0){ 
                          sum-=dp[i+m-1][j-1];
+                          if(i>0)
                           sum+=dp[i-1][j-1];
                     }
-                 }
     			if(sum<=k) flag=1;
             }
         }
