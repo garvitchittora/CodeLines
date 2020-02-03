@@ -21,7 +21,7 @@ int main()
         	dp[0][j]+=dp[0][j-1];
     for(int i=1;i<n;i++){
         	for(int j=1;j<n;j++){
-        		dp[i][j]+=(dp[i-1][j]+dp[i][j-1]-dp[i-1][j-1]);
+        		dp[i][j]=(dp[i][j]+dp[i-1][j]+dp[i][j-1]-dp[i-1][j-1]);
     		}
     	}
     long s=1,e=n;
@@ -35,9 +35,13 @@ int main()
         for(int i=0;i+m<=n;i++){
             for(int j=0;j+m<=n;j++){
                 long long  sum=dp[i+m-1][j+m-1];
-    			if(i>0) sum-=dp[i-1][j+m-1];
-    			if(j>0) sum-=dp[i+m-1][j-1];
-    			if(i>0&&j>0) sum+=dp[i-1][j-1];
+    	               if(i>0) {
+                     sum-=dp[i-1][j+m-1];
+                     if(j>0){ 
+                         sum-=dp[i+m-1][j-1];
+                          sum+=dp[i-1][j-1];
+                    }
+                 }
     			if(sum<=k) flag=1;
             }
         }
@@ -49,14 +53,18 @@ int main()
         for(int i=0;i+m<=n;i++){
             for(int j=0;j+m<=n;j++){
                 long long  sum=dp[i+m-1][j+m-1];
-    			if(i>0) sum-=dp[i-1][j+m-1];
-    			if(j>0) sum-=dp[i+m-1][j-1];
-    			if(i>0&&j>0) sum+=dp[i-1][j-1];
+    			if(i>0) {
+                     sum-=dp[i-1][j+m-1];
+                     if(j>0){ 
+                         sum-=dp[i+m-1][j-1];
+                          sum+=dp[i-1][j-1];
+                    }
+                 }
     			if(sum<=k) flag=1;
             }
         }
     if(flag==1)
-    cout<<s+1<<endl;
+          cout<<s+1<<endl;
     else
-    cout<<s<<endl;
+          cout<<s<<endl;
 }
